@@ -339,13 +339,19 @@ class PhotoEditorViewModel(application: Application) : AndroidViewModel(applicat
         viewModelScope.launch {
             for (sec in 5 downTo 1) {
                 kotlinx.coroutines.delay(1000)
-                _uiState.update { it.copy(adTimeRemaining = sec) }
+                if (_uiState.value.isRewardedAdShowing) {
+                    _uiState.update { it.copy(adTimeRemaining = sec) }
+                } else {
+                    return@launch
+                }
             }
-            _uiState.update {
-                it.copy(
-                    rewardUnlocked = true,
-                    isRewardedAdShowing = false
-                )
+            if (_uiState.value.isRewardedAdShowing) {
+                _uiState.update {
+                    it.copy(
+                        rewardUnlocked = true,
+                        isRewardedAdShowing = false
+                    )
+                }
             }
         }
     }
