@@ -1,0 +1,6 @@
+{
+  "name": "AI Photo Editor",
+  "description": "Futuristic premium AI Photo Editor with high-quality filters, background removal, and smart image enhancers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
